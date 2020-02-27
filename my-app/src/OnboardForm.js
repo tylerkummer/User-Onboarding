@@ -4,10 +4,10 @@ import * as Yup from "yup";
 import axios from "axios";
 
 const OnboardForm =({values, errors, touched, status}) => {
-    const[info, setInfo] = useState([]);
+    const[users, setUsers] = useState([]);
     useEffect(() => {
         console.log("Status: ", status);
-        status && setInfo(info => [...info, status]);
+        status && setUsers(users => [...users, status]);
     }, [status]);
     return (
         <div className ="onboard">
@@ -25,7 +25,7 @@ const OnboardForm =({values, errors, touched, status}) => {
                 <Field name="checkbox" type="checkbox" placeholder="TOS"/>
                 <button type="submit">Submit!</button>
             </Form>
-            {info.map(item => {
+            {users.map(item => {
                 return(
                     <ul key={item.id}>
                         <li>Name: {item.name}</li>
