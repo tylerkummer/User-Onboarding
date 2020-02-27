@@ -21,6 +21,13 @@ const OnboardForm =({values, errors, touched, status}) => {
                 <label htmlFor="password">Password </label>
                 <Field name="password" type="password" placeholder="password"/>
                 {touched.password && errors.password && (<p className="errors">{errors.password}</p>)}
+                <label htmlFor="role">Role </label>
+                <Field as="select" name="role">
+                    <option disabled>Choose a Role</option>
+                    <option value="ui-ux">UI/UX</option>
+                    <option value="front-end">Front End</option>
+                    <option value="back-end">Back End</option>
+                </Field>
                 <label htmlFor="checkbox">Terms of Service </label>
                 <Field name="checkbox" type="checkbox" placeholder="TOS"/>
                 <button type="submit">Submit!</button>
@@ -30,6 +37,7 @@ const OnboardForm =({values, errors, touched, status}) => {
                     <ul key={item.id}>
                         <li>Name: {item.name}</li>
                         <li>Email: {item.email}</li>
+                        <li>Role: {item.role}</li>
                     </ul>
                 );
             })}
@@ -38,11 +46,12 @@ const OnboardForm =({values, errors, touched, status}) => {
 }
 
 const FormikOnboardForm = withFormik({
-    mapPropsToValues({name, email, password, checkbox}){
+    mapPropsToValues({name, email, password, role, checkbox}){
         return {
             name: name || "",
             email: email || "",
             password: password || "",
+            role: role || "",
             checkbox: checkbox || false
         }
     },
